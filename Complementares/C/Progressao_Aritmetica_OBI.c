@@ -5,12 +5,12 @@
 int main(){
 	setlocale(LC_ALL,"");
 	int nrElementos,elemento,elemAnt,razaoAtual,razaoAntiga;
-	int nrPAs,controle,aux,r;
+	int nrPAs,controle,r;
 	controle = 0 ; nrPAs = 1;
 	
 	printf("Informe o numero de elementos da serie: ");
 	scanf("%d",&nrElementos);
-	printf("Insira os numeros da serie separado por espaço: ");
+	printf("Insira os numeros da serie separado por espaÃ§o: ");
 	
 	for (r = 0 ; r < nrElementos ; r++){
 		scanf("%d",&elemento);
@@ -18,33 +18,31 @@ int main(){
 		if (r == 0)
 			elemAnt = elemento;
 		
+		if (r == 1){
+			razaoAtual = elemento - elemAnt;
+			elemAnt = elemento;
+		}
+		
 		if ( r >= 2 ){
 			razaoAntiga = razaoAtual;
 			razaoAtual = elemento - elemAnt;
 			elemAnt = elemento;
 			printf ("Razao antiga: %d | Razao atual: %d | Controle: %d |",razaoAntiga,razaoAtual,controle);	
 			
-			aux = (controle == 0 ) ? 1 : 0 ;
-			
-			if ( aux == 1 )
+			if ( controle == 0 ){
 				if ( razaoAntiga != razaoAtual){
 					nrPAs++;
 					controle = 1;
 				}
-			
-			if ( aux == 0)
+			}else
 				controle = 0;
 			
 			printf(" PAs: %d\n",nrPAs);
 		}
-		else{
-			razaoAtual = elemento - elemAnt;
-			elemAnt = elemento;
-		}
 	}
 	printf("--------------------------------------------------------\n");
 	printf("Ultimo elemento lido: %d\n",elemento);
-	printf("Número de PAs: %d",nrPAs);
+	printf("NÃºmero de PAs: %d",nrPAs);
 	getch();
 	return 1;
 }
